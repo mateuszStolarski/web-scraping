@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./src/app
+      dockerfile: dockerfile
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    ports:
+      - 3279:3279
+    networks:
+      - scrapper
+
+  scrapper:
+    build:
+      context: ./src/scrapper
+      dockerfile: dockerfile
+    image: scrapper:latest
+    env_file:
+      - .env
+    networks:
+      - scrapper
+    depends_on:
+     - mongodb
+    deploy:
+      mode: replicated
+      replicas: ${CRAWLER_REPLICAS}
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - db:/data/db
+    networks:
+      - scrapper
+
+volumes:
+  db:
+
+networks:
+  scrapper:
+    driver: bridge
