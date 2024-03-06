@@ -13,6 +13,15 @@ services:
     networks:
       - scrapper
 
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - scrapper
+
   scrapper:
     build:
       context: ./src/scrapper
@@ -24,6 +33,7 @@ services:
       - scrapper
     depends_on:
      - mongodb
+     - selenium
     deploy:
       mode: replicated
       replicas: ${CRAWLER_REPLICAS}

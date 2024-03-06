@@ -21,8 +21,8 @@ def main() -> None:
     logging.info(f"Running every hour: {env_settings.run_every_hour}")
 
     process = CrawlerProcess(settings=settings.__dict__)
-    process.crawl(TwitterSpider)
     process.crawl(RedditSpider)
+    process.crawl(TwitterSpider)
 
     crawl(
         process=process,

@@ -12,3 +12,4 @@ Application contains 3 microservices:<br />
 3. scrapper - service responsible for crawling data from written spiders.
 
 Application is not hosted anywhere due to lack of cloud credits.
+Twitter spider is not working properly due to lack of Twitter API and problems with selenium in docker.

@@ -4,10 +4,10 @@ from mongo_scrapper.items.base import BaseItem
 from mongo_scrapper.items.reddit import RedditItem
 from mongo_scrapper.spider_settings.reddit import RedditSettings
 from mongo_scrapper.spiders.base import BaseSpider
+from scrapy import Request
 from scrapy.http.response.html import HtmlResponse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
-from scrapy import Request
 
 
 class RedditSpider(BaseSpider):
